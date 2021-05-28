@@ -1,0 +1,44 @@
+swagger: "2.0"
+
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths:
+  /persons:
+    get:
+      summary: résumé
+      description: description trèèèès longue quoi
+      parameters:
+        - name: test
+          in: query
+          type: integer
+          description: coucou
+      responses:
+        200:
+          description: Tout va bien
+          schema:
+            $ref: "#/definitions/Persons"
+
+definitions:
+  Person:
+    required:
+      - username
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      username:
+        type: integer
+
+  Persons:
+    type: array
+    items:
+      $ref: "#/definitions/Person"
