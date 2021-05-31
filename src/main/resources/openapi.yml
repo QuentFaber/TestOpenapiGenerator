@@ -36,6 +36,8 @@ definitions:
       lastname:
         type: string
       username:
+        type: string
+      age:
         type: integer
 
   Persons:
