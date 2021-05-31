@@ -16,7 +16,7 @@ paths:
       summary: résumé
       description: description trèèèès longue quoi
       parameters:
-        - name: test
+        - name: age
           in: query
           type: integer
           description: coucou
@@ -25,6 +25,8 @@ paths:
           description: Tout va bien
           schema:
             $ref: "#/definitions/Persons"
+        400:
+          $ref: "#/responses/Error400"
 
 definitions:
   Person:
@@ -44,3 +46,14 @@ definitions:
     type: array
     items:
       $ref: "#/definitions/Person"
+
+  Error400:
+    properties:
+      message:
+        type: string
+
+responses:
+  Error400:
+    description: Une erreur est survenue
+    schema:
+      $ref: "#/definitions/Error400"

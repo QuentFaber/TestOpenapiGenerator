@@ -11,12 +11,16 @@ import java.util.List;
 public class PersonsApiImpl implements PersonsApiDelegate {
 
     @Override
-    public ResponseEntity<List<Person>> personsGet(Integer test) {
+    public ResponseEntity<List<Person>> personsGet(Integer age) {
+        if (age == null) {
+            throw new PersonNotFoundException();
+        }
+
         Person p = new Person();
         p.firstname("Jean Yves");
         p.lastname("Dupont");
         p.username("JYD");
-        p.age(42);
+        p.age(age);
 
         return ResponseEntity.ok(List.of(p));
     }
