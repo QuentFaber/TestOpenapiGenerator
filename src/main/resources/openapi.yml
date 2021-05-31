@@ -28,6 +28,19 @@ paths:
         400:
           $ref: "#/responses/Error400"
 
+  /persons/{username}:
+    parameters:
+      - $ref: "#/parameters/username"
+    get:
+      description: récupérer qqn
+      responses:
+        200:
+          description: Voici le username
+          schema:
+            $ref: "#/definitions/Person"
+        500:
+          $ref: "#/responses/Error500"
+
 definitions:
   Person:
     required:
@@ -51,6 +64,13 @@ definitions:
     properties:
       message:
         type: string
+
+parameters:
+  username:
+    name: username
+    in: path
+    required: true
+    type: string
 
 responses:
   Error400:

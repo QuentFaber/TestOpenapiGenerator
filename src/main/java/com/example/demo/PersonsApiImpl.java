@@ -25,4 +25,19 @@ public class PersonsApiImpl implements PersonsApiDelegate {
         return ResponseEntity.ok(List.of(p));
     }
 
+    @Override
+    public ResponseEntity<Person> personsUsernameGet(String username) {
+        if (username == null) {
+            throw new PersonNotFoundException();
+        }
+
+        Person p = new Person();
+        p.firstname("Jean Yves");
+        p.lastname("Dupont");
+        p.username(username);
+        p.age(42);
+
+        return ResponseEntity.ok(p);
+    }
+
 }
