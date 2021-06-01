@@ -24,7 +24,7 @@ paths:
         200:
           description: Tout va bien
           schema:
-            $ref: "#/definitions/Persons"
+            $ref: "person.yml#/Persons"
         400:
           $ref: "#/responses/Error400"
 
@@ -37,29 +37,11 @@ paths:
         200:
           description: Voici le username
           schema:
-            $ref: "#/definitions/Person"
+            $ref: "person.yml#/Person"
         500:
           $ref: "#/responses/Error500"
 
 definitions:
-  Person:
-    required:
-      - username
-    properties:
-      firstname:
-        type: string
-      lastname:
-        type: string
-      username:
-        type: string
-      age:
-        type: integer
-
-  Persons:
-    type: array
-    items:
-      $ref: "#/definitions/Person"
-
   Error400:
     properties:
       message:
@@ -71,6 +53,7 @@ parameters:
     in: path
     required: true
     type: string
+    pattern: "[a-z0-9]{8,64}"
 
 responses:
   Error400:

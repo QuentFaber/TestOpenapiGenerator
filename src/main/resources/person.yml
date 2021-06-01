@@ -1,0 +1,17 @@
+Person:
+  required:
+    - username
+  properties:
+    firstname:
+      type: string
+    lastname:
+      type: string
+    username:
+      type: string
+    age:
+      type: integer
+
+Persons:
+  type: array
+  items:
+    $ref: "#/Person"
