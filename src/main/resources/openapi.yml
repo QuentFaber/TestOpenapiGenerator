@@ -1,14 +1,13 @@
-swagger: "2.0"
+openapi: 3.0.3
 
 info:
   version: 1.0.0
   title: Simple API
   description: A simple API to learn how to write OpenAPI Specification
 
-schemes:
-  - https
-host: simple.api
-basePath: /openapi101
+servers:
+  - url: https://simple.api/openapi101
+    description: Ca c'est mon serveur que je paye tous les mois
 
 paths:
   /persons:
@@ -18,45 +17,54 @@ paths:
       parameters:
         - name: age
           in: query
-          type: integer
           description: coucou
+          schema:
+            type: integer
       responses:
         200:
           description: Tout va bien
-          schema:
-            $ref: "person.yml#/Persons"
+          content:
+            "*/*":
+              schema:
+                $ref: "person.yml#/Persons"
         400:
-          $ref: "#/responses/Error400"
+          $ref: "#/components/responses/Error400"
 
   /persons/{username}:
     parameters:
-      - $ref: "#/parameters/username"
+      - $ref: "#/components/parameters/username"
     get:
       description: récupérer qqn
       responses:
         200:
           description: Voici le username
-          schema:
-            $ref: "person.yml#/Person"
+          content:
+            "*/*":
+              schema:
+                $ref: "person.yml#/Person"
         500:
-          $ref: "#/responses/Error500"
+          $ref: "#/components/responses/Error400"
 
-definitions:
-  Error400:
-    properties:
-      message:
+components:
+  schemas:
+    Error400:
+      properties:
+        message:
+          type: string
+
+  parameters:
+    username:
+      name: username
+      in: path
+      required: true
+      schema:
         type: string
+        pattern: "[a-z0-9]{8,64}"
 
-parameters:
-  username:
-    name: username
-    in: path
-    required: true
-    type: string
-    pattern: "[a-z0-9]{8,64}"
-
-responses:
-  Error400:
-    description: Une erreur est survenue
-    schema:
-      $ref: "#/definitions/Error400"
+  responses:
+    Error400:
+      description: Une erreur est survenue
+      content:
+        "*/*":
+          schema:
+            $ref: "#/components/schemas/Error400"
