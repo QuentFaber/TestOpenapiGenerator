@@ -20,6 +20,7 @@ paths:
           description: coucou
           schema:
             type: integer
+            minimum: 50
       responses:
         200:
           description: Tout va bien

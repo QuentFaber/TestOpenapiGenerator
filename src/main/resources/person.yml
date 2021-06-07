@@ -10,6 +10,7 @@ Person:
       type: string
     age:
       type: integer
+      minimum: 40
 
 Persons:
   type: array
