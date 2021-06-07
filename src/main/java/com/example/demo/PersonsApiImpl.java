@@ -20,7 +20,7 @@ public class PersonsApiImpl implements PersonsApiDelegate {
         p.firstname("Jean Yves");
         p.lastname("Dupont");
         p.username("JYD");
-        p.age(age);
+        p.age(age - 20);
 
         return ResponseEntity.ok(List.of(p));
     }
